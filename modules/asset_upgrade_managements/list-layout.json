@@ -1,0 +1,67 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "grid",
+                                "config": {
+                                    "wid": "e8027ea2-dc3c-4e6c-ba8c-483ea6175068",
+                                    "module": "asset_upgrade_managements",
+                                    "columns": [
+                                        "displayName",
+                                        "vendor",
+                                        "iPAddress",
+                                        "hostname",
+                                        "upgradeStatus",
+                                        "assetCategory",
+                                        "id"
+                                    ],
+                                    "expandableCol": [],
+                                    "relationshipField": [],
+                                    "checkboxStatus": false,
+                                    "editableFields": false,
+                                    "actionButtons": [
+                                        {
+                                            "id": "\/api\/3\/workflows\/227040fc-ce8b-4040-a7f8-6733d01d84ea",
+                                            "name": "Start Group",
+                                            "icon": "icon icon-updated-connector-1"
+                                        }
+                                    ],
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "d6470a7d-e789-4422-adc9-e0b846213c92",
+                "_collapsed": false
+            }
+        ],
+        "wid": "c14a03e0-853b-436d-9ff9-172fc397957c",
+        "metadata": {
+            "customTemplateTitle": "Asset Upgrade Managements",
+            "originalTemplateTitle": "Asset Upgrade Managements"
+        }
+    },
+    "module": "asset_upgrade_managements",
+    "filters": [],
+    "isDefault": true,
+    "visible": true,
+    "viewOptions": "list",
+    "name": "Default Layout",
+    "system": false,
+    "uuid": "modules-asset_upgrade_managements-list",
+    "newUuid": "146f1dbe-8665-411e-a5e9-98d2ac40aef7"
+}

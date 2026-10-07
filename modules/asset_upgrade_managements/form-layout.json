@@ -1,0 +1,109 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "form",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "formGroup",
+                                "config": {
+                                    "wid": "fd265e08-facc-4a4a-87f7-f56e95d42309",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "displayName",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "iPAddress",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "hostname",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "vendor",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "assetCategory",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "upgradeStatus",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "assetConfigName",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "assetGroupID",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "rank",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "53283fc4-d853-4530-a997-a42190655706",
+                "_collapsed": false
+            }
+        ],
+        "actionButtons": [],
+        "wid": "cd03caef-adfd-4142-bf64-3e661b6d9000",
+        "metadata": [],
+        "style": "col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"
+    },
+    "module": "asset_upgrade_managements",
+    "filters": [],
+    "isDefault": true,
+    "visible": true,
+    "viewOptions": "form",
+    "name": "Default Layout",
+    "system": false,
+    "uuid": "modules-asset_upgrade_managements-form",
+    "newUuid": "d5f73b56-b688-4058-9fcf-cc2590d75d48"
+}

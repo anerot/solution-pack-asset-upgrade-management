@@ -1,0 +1,207 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "cebfb76f-420f-4d09-a6fd-d59fceeee0b5",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "displayName",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "hostname",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "iPAddress",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "vendor",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "assetCategory",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "upgradeStatus",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "assetConfigName",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "assetGroupID",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "rank",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-9"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "79145f12-77c6-4af3-a16b-d30c077eea14",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "createDate",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "createUser",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "modifyDate",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "modifyUser",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-3"
+                    }
+                ],
+                "wid": "dd7547ab-6612-4457-9719-057de4e13cd8",
+                "_collapsed": false,
+                "collapsible": false,
+                "collapsibleIndex": 0
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "tabs": [
+                                        {
+                                            "title": "Configuration backup",
+                                            "widget": {
+                                                "type": "relationship.subtab",
+                                                "config": {
+                                                    "excludes": [],
+                                                    "wid": "9d61ebf9-903b-44f1-b4fc-4b483851871b",
+                                                    "selectionType": "include",
+                                                    "actionButtons": [],
+                                                    "expandableCol": [],
+                                                    "enableHorizontalScroll": [],
+                                                    "includes": [
+                                                        "attachments"
+                                                    ]
+                                                },
+                                                "visible": true
+                                            },
+                                            "show": true,
+                                            "visible": true,
+                                            "icon": "fa fa-none"
+                                        }
+                                    ],
+                                    "wid": "91974a9a-b90c-460c-a592-40b9f402c509"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "2e1b5a0f-28d5-4a26-9f8e-8e43795d0a12",
+                "_collapsed": false
+            }
+        ],
+        "actionButtons": [],
+        "wid": "f8a24a13-7171-422d-bc22-0e9e47f6b0b7",
+        "metadata": [],
+        "allowExecuteConnectorActionButton": true
+    },
+    "module": "asset_upgrade_managements",
+    "filters": [],
+    "isDefault": true,
+    "visible": true,
+    "viewOptions": "detail",
+    "name": "Default Layout",
+    "system": false,
+    "uuid": "modules-asset_upgrade_managements-detail",
+    "newUuid": "83dcd130-029a-477f-91a4-1c0d1a11b88e"
+}

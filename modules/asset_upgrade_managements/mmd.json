@@ -1,0 +1,676 @@
+{
+    "@context": "\/api\/3\/contexts\/StagingModelMetadata",
+    "@type": "StagingModelMetadata",
+    "type": "asset_upgrade_managements",
+    "parentType": null,
+    "tableName": "asset_upgrade_management",
+    "ownable": false,
+    "userOwnable": false,
+    "queueable": false,
+    "trackable": true,
+    "taggable": true,
+    "peerReplicable": false,
+    "defaultSort": [
+        {
+            "direction": "ASC",
+            "field": "iPAddress"
+        }
+    ],
+    "uniqueConstraint": [
+        {
+            "asset_upgrade_managements_unique": {
+                "columns": [
+                    "hostname",
+                    "displayName"
+                ]
+            }
+        }
+    ],
+    "indexable": true,
+    "writable": true,
+    "attributes": [
+        {
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "rank",
+            "length": null,
+            "formType": "integer",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 1,
+                "maxlength": 255
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "1",
+            "tooltip": "Ranking position for the upgrade",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ rank }}",
+            "descriptions": {
+                "singular": "Rank"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "assetGroupID",
+            "length": null,
+            "formType": "integer",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 1,
+                "maxlength": 255
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "1",
+            "tooltip": "Asset Deployment Group ID",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ assetGroupID }}",
+            "descriptions": {
+                "singular": "Asset Group ID"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "displayName",
+            "length": null,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ displayName }}",
+            "descriptions": {
+                "singular": "Display Name"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "vendor",
+            "length": null,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AssetVendor"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "ba20e2d6-d7c2-4dba-9372-dc20934acd26": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "c38a438a-baf5-4d7c-89a1-47147b7ad0dd": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "babc170d-ba13-4c03-a043-70414cb4837f": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "9b3bfc5b-11fa-49d2-929d-3e68e0909ef4": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "cfaf4f54-e306-4a98-b027-b4456af8be1f": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "\/api\/3\/picklists\/cfaf4f54-e306-4a98-b027-b4456af8be1f",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ vendor }}",
+            "descriptions": {
+                "singular": "Vendor"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "assetConfigName",
+            "length": null,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": "Specify the Asset Upgrade Connector config name to use as credential (Case sensitive)",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ assetConfigName }}",
+            "descriptions": {
+                "singular": "Asset Config Name"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "iPAddress",
+            "length": null,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ iPAddress }}",
+            "descriptions": {
+                "singular": "IP Address"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "hostname",
+            "length": null,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ hostname }}",
+            "descriptions": {
+                "singular": "Hostname"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "upgradeStatus",
+            "length": null,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AssetUpgradeStatus"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "161d4f0d-fd09-45c0-8708-53de822f2dff": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "00ad5b76-357d-44d5-a8bf-e3d8622e4e9e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "cada6e06-c416-46dc-b70b-4911db11f304": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": true,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "\/api\/3\/picklists\/00ad5b76-357d-44d5-a8bf-e3d8622e4e9e",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ upgradeStatus }}",
+            "descriptions": {
+                "singular": "Upgrade Status"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "attachments",
+            "name": "attachments",
+            "length": null,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "attachments"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "assetUpgradeManagements",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ attachments }}",
+            "descriptions": {
+                "singular": "Attachments"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "assetCategory",
+            "length": null,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AssetCategory"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "f36137a5-aa8f-4532-aab5-e57a8d7420a1": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "7630b182-4930-4f97-beec-3c3a5372cb3b": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "52362dcf-77d2-4ef2-9799-76519db7409a": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "15fa2e79-88ac-4a63-a623-3ac03980b850": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "0e9cd412-66a1-49ed-8f98-11fab108f6d5": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "183da94b-00f9-4f57-af92-a43394cdbe00": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "1bfa4142-b3f2-4945-8393-66228f9260d3": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "373f6e62-4229-4fbe-9a68-085ec266ff69": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "72fe5701-89ba-4d08-a790-ec5e7a56f1ac": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "8d702d9a-0c1d-4380-9c5e-64b5e1f5ab13": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "925104c4-9c7a-48fd-be71-74fe85c55f69": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "b40802a5-8462-49d8-a6f0-7853666a4d3a": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bb8b4a11-98ab-458e-9db2-d4a3cda8b874": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bc5f5523-058d-476d-9bf5-de6d90855637": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "e231a1fb-166b-40b4-9c9f-1a71d5515db3": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "e41a02ee-6be3-480a-aa2c-c22ba5ebb40f": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ assetCategory }}",
+            "descriptions": {
+                "singular": "Asset Category"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "comments",
+            "name": "comments",
+            "length": null,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "comments"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "assetUpgradeManagements",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ comments }}",
+            "descriptions": {
+                "singular": "Comments"
+            }
+        }
+    ],
+    "system": false,
+    "module": "asset_upgrade_managements",
+    "softDeleteable": false,
+    "archivable": false,
+    "paused": false,
+    "partitionBy": "modifyDate",
+    "archivalCriteria": {
+        "keep_primary_data_for": 24,
+        "delete_primary_data_after": 60
+    },
+    "archivalFilters": [],
+    "replicationFilters": [],
+    "enableReplication": true,
+    "displayName": "{{ hostname }} {{ iPAddress }}",
+    "descriptions": {
+        "singular": "Asset Upgrade Management",
+        "plural": "Asset Upgrade Managements"
+    }
+}
