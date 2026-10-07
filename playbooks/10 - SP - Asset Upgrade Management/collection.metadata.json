@@ -1,0 +1,11 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowCollection",
+    "@type": "WorkflowCollection",
+    "name": "10 - SP - Asset Upgrade Management",
+    "description": null,
+    "visible": true,
+    "image": null,
+    "uuid": "cdcaf650-0260-44cd-8d2c-06788c9f43d1",
+    "deletedAt": null,
+    "recordTags": []
+}
