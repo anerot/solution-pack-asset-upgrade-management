@@ -1,0 +1,40 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "app",
+    "config": {
+        "navigation": [
+            {
+                "editMode": false,
+                "icon": "fa fa-download",
+                "items": [
+                    {
+                        "editMode": false,
+                        "icon": "fa fa-none",
+                        "require": {
+                            "action": "read",
+                            "module": "asset_upgrade_managements"
+                        },
+                        "state": {
+                            "name": "main.modules.list",
+                            "parameters": {
+                                "module": "asset_upgrade_managements"
+                            }
+                        },
+                        "title": "Asset List"
+                    }
+                ],
+                "title": "Asset Upgrade Management"
+            }
+        ]
+    },
+    "module": "app",
+    "filters": [],
+    "isDefault": true,
+    "visible": true,
+    "viewOptions": "detail",
+    "name": "Default Layout",
+    "system": true,
+    "uuid": "navigation",
+    "newUuid": "d9aa6772-62c3-4f5f-a945-031780202225"
+}
