@@ -1,0 +1,60 @@
+{
+    "@context": "\/api\/3\/contexts\/PicklistName",
+    "@id": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+    "@type": "PicklistName",
+    "name": "AssetVendor",
+    "system": false,
+    "picklists": [
+        {
+            "@id": "\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26",
+            "@type": "Picklist",
+            "itemValue": "Moxa",
+            "orderIndex": 0,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+            "uuid": "ba20e2d6-d7c2-4dba-9372-dc20934acd26"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/c38a438a-baf5-4d7c-89a1-47147b7ad0dd",
+            "@type": "Picklist",
+            "itemValue": "Cisco",
+            "orderIndex": 1,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+            "uuid": "c38a438a-baf5-4d7c-89a1-47147b7ad0dd"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/babc170d-ba13-4c03-a043-70414cb4837f",
+            "@type": "Picklist",
+            "itemValue": "HP",
+            "orderIndex": 2,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+            "uuid": "babc170d-ba13-4c03-a043-70414cb4837f"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/9b3bfc5b-11fa-49d2-929d-3e68e0909ef4",
+            "@type": "Picklist",
+            "itemValue": "Fortinet",
+            "orderIndex": 3,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+            "uuid": "9b3bfc5b-11fa-49d2-929d-3e68e0909ef4"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/cfaf4f54-e306-4a98-b027-b4456af8be1f",
+            "@type": "Picklist",
+            "itemValue": "unknown",
+            "orderIndex": 4,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a",
+            "uuid": "cfaf4f54-e306-4a98-b027-b4456af8be1f"
+        }
+    ],
+    "uuid": "244e1c7a-4ccf-4fbf-828d-9d42462a311a"
+}

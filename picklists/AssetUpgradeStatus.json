@@ -1,0 +1,40 @@
+{
+    "@context": "\/api\/3\/contexts\/PicklistName",
+    "@id": "\/api\/3\/picklist_names\/71daf145-5d2d-46d0-96b8-e73b65713923",
+    "@type": "PicklistName",
+    "name": "AssetUpgradeStatus",
+    "system": false,
+    "picklists": [
+        {
+            "@id": "\/api\/3\/picklists\/161d4f0d-fd09-45c0-8708-53de822f2dff",
+            "@type": "Picklist",
+            "itemValue": "Failed",
+            "orderIndex": 2,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/71daf145-5d2d-46d0-96b8-e73b65713923",
+            "uuid": "161d4f0d-fd09-45c0-8708-53de822f2dff"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/00ad5b76-357d-44d5-a8bf-e3d8622e4e9e",
+            "@type": "Picklist",
+            "itemValue": "Success",
+            "orderIndex": 0,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/71daf145-5d2d-46d0-96b8-e73b65713923",
+            "uuid": "00ad5b76-357d-44d5-a8bf-e3d8622e4e9e"
+        },
+        {
+            "@id": "\/api\/3\/picklists\/cada6e06-c416-46dc-b70b-4911db11f304",
+            "@type": "Picklist",
+            "itemValue": "To Be Upgraded",
+            "orderIndex": 1,
+            "color": null,
+            "icon": null,
+            "listName": "\/api\/3\/picklist_names\/71daf145-5d2d-46d0-96b8-e73b65713923",
+            "uuid": "cada6e06-c416-46dc-b70b-4911db11f304"
+        }
+    ],
+    "uuid": "71daf145-5d2d-46d0-96b8-e73b65713923"
+}
