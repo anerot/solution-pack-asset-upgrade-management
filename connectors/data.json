@@ -1,0 +1,15 @@
+[
+    {
+        "name": "assetUpgrade",
+        "label": "Asset Upgrade",
+        "category": [
+            "OT & IoT Security"
+        ],
+        "description": "Asset Upgrade connector is part of the Solution Pack Asset Upgrade Management.\nEach connector configuration stores the tuple username\/password.\nEach Action requires IP\/Port.\nIt currently supports:\n- MOXA switches (Login check, Backup, Upgrade)\n- SSH Cli",
+        "publisher": "ArnaudN",
+        "version": "1.0.0",
+        "operation_roles": [],
+        "configurations": [],
+        "dataImports": []
+    }
+]
