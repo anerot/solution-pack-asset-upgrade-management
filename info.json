@@ -1,0 +1,77 @@
+{
+    "name": "assetUpgradeManagement",
+    "version": "1.0.0",
+    "fsrMinCompatibility": "7.2.0",
+    "type": "solutionpack",
+    "local": true,
+    "label": "Asset Upgrade Management",
+    "dependencies": [],
+    "prerequisite": "A mock ouput is available into the \"Start Group\" playbook for DEMO purpose.\nEdit the playbook's configuration step to modify the \"useMockOutput\" to True if needed.",
+    "publisher": "ArnaudN",
+    "description": "This Solution Pack provides a Framework to manage your asset upgrade according to there Ranking position.\nEach Asset in \"Asset List\" is part of an \"Asset Group ID\" and is having a \"Rank/Position/Order\" for the Upgrade.\nYou can perform upgrades by \"Group\" or just by selecting specific Asset in \"Asset List\".\nThe Playbook supports MOXA devices and is ready for other Vendor by using the SSH command available in Asset Upgrade Connector.",
+    "help": null,
+    "category": [
+        "OT & IoT Security"
+    ],
+    "supportInfo": "Fortinet Customer Support",
+    "iconLarge": null,
+    "postInstallConfig": {
+        "enabled": false
+    },
+    "date": "2026-10-07T18:10:27+00:00",
+    "contents": {
+        "picklistNames": [
+            {
+                "name": "AssetCategory"
+            },
+            {
+                "name": "AssetUpgradeStatus"
+            },
+            {
+                "name": "AssetVendor"
+            },
+            {
+                "name": "AttachmentsType"
+            }
+        ],
+        "modules": {
+            "asset_upgrade_managements": {
+                "name": "Asset Upgrade Managements",
+                "apiName": "asset_upgrade_managements"
+            }
+        },
+        "viewTemplates": {
+            "asset_upgrade_managements": {
+                "name": "Asset Upgrade Managements",
+                "apiName": "asset_upgrade_managements",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            }
+        },
+        "views": {
+            "navigation": [
+                "Asset Upgrade Management"
+            ]
+        },
+        "roles": [
+            {
+                "name": "Full App Permissions"
+            }
+        ],
+        "playbooks": [
+            {
+                "name": "10 - SP - Asset Upgrade Management"
+            }
+        ],
+        "connectors": [
+            {
+                "name": "Asset Upgrade",
+                "apiName": "assetUpgrade",
+                "version": "1.0.0"
+            }
+        ]
+    }
+}
