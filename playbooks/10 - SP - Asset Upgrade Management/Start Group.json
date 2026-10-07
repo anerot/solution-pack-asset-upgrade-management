@@ -1,0 +1,1177 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Start Group",
+    "aliasName": null,
+    "tag": null,
+    "description": "User interaction to start Upgrade by selecting group, rank and firmware",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/cdcaf650-0260-44cd-8d2c-06788c9f43d1",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/92c799b8-a528-4a93-ac7b-54a8a466403f",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Ask for AssetGroup",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Specify the AssetGroup to upgrade",
+                        "description": "##### You are to Upgrade some of your assets based on the AssetGroup membership and Rank\n<br>\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">AssetGroupID<\/th>\n      <th style=\"text-align: center;\">Nb of Assets<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.groupid_stats %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.assetGroupID}}<\/td>\n      <td style=\"text-align: center;\">{{record.count}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>\nonly assets with \"To Be Upgraded\" are eligible for upgrade",
+                        "inputVariables": [
+                            {
+                                "name": "assetGroupID",
+                                "type": "integer",
+                                "label": "assetGroupID",
+                                "title": "Integer Field",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "integer",
+                                "formType": "integer",
+                                "required": true,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": [],
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/integer.html",
+                                "defaultValue": 1,
+                                "_previousName": "assetIRI",
+                                "playbookField": true,
+                                "requiredQuery": [],
+                                "displayTemplate": "%7B%7B%20hostname%20%7D%7D%20%7B%7B%20iPAddress%20%7D%7D",
+                                "lengthConstraint": true,
+                                "responseSelected": [],
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "requiredCondition": "required",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addRequiredConditions": true
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/0e0cf1a4-aee2-47c4-9cd2-d322845d1795"
+                        },
+                        {
+                            "option": "Cancel",
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "700",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "51054063-111c-4e61-8c9c-6a25c7560acb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Ask for Asset Rank",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Select the Asset Rank to Upgrade",
+                        "description": "Switch Rank to upgrade in **AssetGroup={{vars.steps.Ask_for_AssetGroup.input.assetGroupID}}** :\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Rank<\/th>\n      <th style=\"text-align: center;\">Asset count<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.rank_stats %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.rank}}<\/td>\n      <td style=\"text-align: center;\">{{record.count}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>\n",
+                        "inputVariables": [
+                            {
+                                "name": "rankNumber",
+                                "type": "integer",
+                                "label": "Rank number",
+                                "title": "Integer Field",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "integer",
+                                "formType": "integer",
+                                "required": true,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/integer.html",
+                                "defaultValue": 0,
+                                "_previousName": "rankNumber",
+                                "playbookField": true,
+                                "requiredQuery": [],
+                                "lengthConstraint": true,
+                                "responseSelected": [],
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "requiredCondition": "required",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addRequiredConditions": true
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/238515b5-f086-4396-92ef-401330e4a4e5"
+                        },
+                        {
+                            "option": "Cancel",
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "860",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "66591ca7-9f5b-4847-8fe6-8e7c5cdf2e85"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Ask for Firmware",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Select the Firmware",
+                        "description": "<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Firmware ID<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.steps.Find_Firmware %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.id}}<\/td>\n      <td style=\"text-align: center;\">{{record.name}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n\n\nYou are to simultaneously Upgrade the SELECTED Assets.\nSwitch Rank: {{vars.steps.Ask_for_Asset_Rank.input.rankNumber}}\nAssetGroup: {{vars.steps.Ask_for_AssetGroup.input.assetGroupID}}\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">IP<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n      <th style=\"text-align: center;\">Vendor<\/th>\n      <th style=\"text-align: center;\">Config<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in (vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ' and $.rank= '~vars.steps.Ask_for_Asset_Rank.input.rankNumber ~')')) %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.iPAddress}}<\/td>\n      <td style=\"text-align: center;\">{{record.displayName}}<\/td>\n      <td style=\"text-align: center;\">{{record.vendor.itemValue}}\n      <td style=\"text-align: center;\">{{record.assetConfigName}}\n      <\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n",
+                        "inputVariables": [
+                            {
+                                "name": "iRI",
+                                "type": "integer",
+                                "label": "Firmware ID",
+                                "title": "Integer Field",
+                                "usable": true,
+                                "options": [
+                                    {
+                                        "test": "coucou"
+                                    }
+                                ],
+                                "tooltip": "",
+                                "dataType": "integer",
+                                "formType": "integer",
+                                "required": true,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": null
+                                },
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/integer.html",
+                                "_nameTouched": true,
+                                "defaultValue": 1,
+                                "_previousName": "iRI",
+                                "playbookField": true,
+                                "requiredQuery": [],
+                                "displayTemplate": "{{ name }}",
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": []
+                                },
+                                "lengthConstraint": true,
+                                "responseSelected": [],
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "requiredCondition": "required",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addRequiredConditions": true,
+                                "_addVisibilityConditions": true
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/6cf3e5eb-6bfe-4d26-bf2e-43f06251cb74"
+                        },
+                        {
+                            "option": "Cancel",
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1020",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "a2c19aba-7f96-4c20-8c5a-61d4c6a3fbf4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Cisco Upgrade",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.Cisco_assetsUUID}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "AssetUID": "{{vars.item}}",
+                    "AttachmentIRI": "{{ (vars.steps.Find_Firmware | selectattr('id', 'equalto', vars.steps.Ask_for_Firmware.input.iRI|int) | list | first)['@id'] }}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/1a53fd0f-df5e-4bf6-b0d0-e46b9482d1e4"
+            },
+            "status": null,
+            "top": "1360",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "7ae78970-8a71-4a06-9eee-95dde3d9d497"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "useMockOutput": "false"
+            },
+            "status": null,
+            "top": "140",
+            "left": "820",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "8b749598-276f-432d-9a9e-416a80e81ad1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Asset",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "upgradeStatus",
+                            "value": "\/api\/3\/picklists\/cada6e06-c416-46dc-b70b-4911db11f304",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/cada6e06-c416-46dc-b70b-4911db11f304",
+                                "display": "To Be Upgraded",
+                                "itemValue": "To Be Upgraded"
+                            },
+                            "operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "rank",
+                        "assetGroupID",
+                        "displayName",
+                        "vendor",
+                        "iPAddress",
+                        "assetConfigName"
+                    ]
+                },
+                "module": "asset_upgrade_managements?$limit=1000",
+                "mock_result": "[{\n      \"id\": 1,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/ba1d0606-afdf-4015-ac88-612aefe43839\",\n      \"rank\": 1,\n      \"uuid\": \"ba1d0606-afdf-4015-ac88-612aefe43839\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.1\",\n      \"displayName\": \"Switch1\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 6,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/ee8b85ae-6095-4fc9-a528-051150efcbb7\",\n      \"rank\": 1,\n      \"uuid\": \"ee8b85ae-6095-4fc9-a528-051150efcbb7\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1500,\n        \"@id\": \"\/api\/3\/picklists\/cfaf4f54-e306-4a98-b027-b4456af8be1f\",\n        \"icon\": null,\n        \"uuid\": \"cfaf4f54-e306-4a98-b027-b4456af8be1f\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"unknown\",\n        \"importedBy\": [],\n        \"orderIndex\": 4\n      },\n      \"iPAddress\": \"172.18.20.10\",\n      \"displayName\": \"Switch10\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 3,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/a6a74a25-3aa1-44b1-9154-1af7ec1ccae8\",\n      \"rank\": 3,\n      \"uuid\": \"a6a74a25-3aa1-44b1-9154-1af7ec1ccae8\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.3\",\n      \"displayName\": \"Switch3\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 7,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/162ddd31-652c-403b-81ca-20f7f4410fab\",\n      \"rank\": 3,\n      \"uuid\": \"162ddd31-652c-403b-81ca-20f7f4410fab\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.4\",\n      \"displayName\": \"Switch4\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 8,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/3cc2ce15-7a8b-44c5-9ee6-7d0901982e58\",\n      \"rank\": 3,\n      \"uuid\": \"3cc2ce15-7a8b-44c5-9ee6-7d0901982e58\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.5\",\n      \"displayName\": \"Switch5\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 9,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/c8970196-9a48-4744-9e90-625ff71b11a6\",\n      \"rank\": 1,\n      \"uuid\": \"c8970196-9a48-4744-9e90-625ff71b11a6\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.6\",\n      \"displayName\": \"Switch6\",\n      \"assetGroupID\": 2,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 10,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/418a38d3-ae32-4bd7-a462-f8d2ff5df27b\",\n      \"rank\": 1,\n      \"uuid\": \"418a38d3-ae32-4bd7-a462-f8d2ff5df27b\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.7\",\n      \"displayName\": \"Switch7\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 4,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/e00bad7e-8296-4435-8957-a7327e3ef1ea\",\n      \"rank\": 1,\n      \"uuid\": \"e00bad7e-8296-4435-8957-a7327e3ef1ea\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.8\",\n      \"displayName\": \"Switch8\",\n      \"assetGroupID\": 2,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 5,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/f1153d72-f110-42c1-b9e4-cb58e3f34f1d\",\n      \"rank\": 1,\n      \"uuid\": \"f1153d72-f110-42c1-b9e4-cb58e3f34f1d\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.9\",\n      \"displayName\": \"Switch9\",\n      \"assetGroupID\": 2,\n      \"assetConfigName\": \"Moxa\"\n    },\n    {\n      \"id\": 2,\n      \"@id\": \"\/api\/3\/asset_upgrade_managements\/31bfd4ba-1bc0-417a-9ea6-0eb182f4f276\",\n      \"rank\": 2,\n      \"uuid\": \"31bfd4ba-1bc0-417a-9ea6-0eb182f4f276\",\n      \"@type\": \"AssetUpgradeManagement\",\n      \"vendor\": {\n        \"id\": 1493,\n        \"@id\": \"\/api\/3\/picklists\/ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"icon\": null,\n        \"uuid\": \"ba20e2d6-d7c2-4dba-9372-dc20934acd26\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/244e1c7a-4ccf-4fbf-828d-9d42462a311a\",\n        \"itemValue\": \"Moxa\",\n        \"importedBy\": [],\n        \"orderIndex\": 0\n      },\n      \"iPAddress\": \"172.18.20.2\",\n      \"displayName\": \"Switch2\",\n      \"assetGroupID\": 1,\n      \"assetConfigName\": \"Moxabad\"\n    }\n]",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "340",
+            "left": "820",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "40a6de5a-a5e4-4736-a8b8-a9c5356882cc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Assets UUID",
+            "description": null,
+            "arguments": {
+                "Moxa_assetsUUID": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ' and $.rank= '~vars.steps.Ask_for_Asset_Rank.input.rankNumber ~' and $.vendor.itemValue = \"Moxa\").groupBy($.uuid).select($[0])')}}",
+                "Cisco_assetsUUID": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ' and $.rank= '~vars.steps.Ask_for_Asset_Rank.input.rankNumber ~' and $.vendor.itemValue = \"Cisco\").groupBy($.uuid).select($[0])')}}",
+                "unknown_assetsUUID": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ' and $.rank= '~vars.steps.Ask_for_Asset_Rank.input.rankNumber ~' and $.vendor.itemValue = \"unknown\").groupBy($.uuid).select($[0])')}}",
+                "Fortinet_assetsUUID": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ' and $.rank= '~vars.steps.Ask_for_Asset_Rank.input.rankNumber ~' and $.vendor.itemValue = \"Fortinet\").groupBy($.uuid).select($[0])')}}"
+            },
+            "status": null,
+            "top": "1320",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "baddb2cd-75d6-47d1-a014-2bea248a95d1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Firmware",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "type",
+                            "value": "\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de",
+                                "display": "Firmware",
+                                "itemValue": "Firmware"
+                            },
+                            "operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "name",
+                        "description",
+                        "type",
+                        "id"
+                    ]
+                },
+                "module": "attachments?$limit=30",
+                "mock_result": "[\n    {\n      \"id\": 5,\n      \"@id\": \"\/api\/3\/attachments\/07810a12-ee25-4a21-a12a-0673163a0737\",\n      \"name\": \"moxa-eds-4000-g4000-series-firmware-v4.2.rom\",\n      \"type\": {\n        \"id\": 1515,\n        \"@id\": \"\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de\",\n        \"icon\": null,\n        \"uuid\": \"6b6ab015-e652-46ef-90c7-79327c5674de\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/91be0720-8088-42b0-95d8-1178b390e0f9\",\n        \"itemValue\": \"Firmware\",\n        \"importedBy\": [],\n        \"orderIndex\": 14\n      },\n      \"uuid\": \"07810a12-ee25-4a21-a12a-0673163a0737\",\n      \"@type\": \"Attachment\",\n      \"description\": null\n    },\n    {\n      \"id\": 17,\n      \"@id\": \"\/api\/3\/attachments\/9bf9b339-ff7d-4ee7-90f4-5c1692be12f7\",\n      \"name\": \"test3\",\n      \"type\": {\n        \"id\": 1515,\n        \"@id\": \"\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de\",\n        \"icon\": null,\n        \"uuid\": \"6b6ab015-e652-46ef-90c7-79327c5674de\",\n        \"@type\": \"Picklist\",\n        \"color\": null,\n        \"listName\": \"\/api\/3\/picklist_names\/91be0720-8088-42b0-95d8-1178b390e0f9\",\n        \"itemValue\": \"Firmware\",\n        \"importedBy\": [],\n        \"orderIndex\": 14\n      },\n      \"uuid\": \"9bf9b339-ff7d-4ee7-90f4-5c1692be12f7\",\n      \"@type\": \"Attachment\",\n      \"description\": null\n    }\n  ]",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "240",
+            "left": "820",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "fb4e6b5a-f53f-44ae-9cb1-13d7097d097b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Fortinet Upgrade",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.Fortinet_assetsUUID}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "AssetUID": "{{vars.item}}",
+                    "AttachmentIRI": "{{ (vars.steps.Find_Firmware | selectattr('id', 'equalto', vars.steps.Ask_for_Firmware.input.iRI|int) | list | first)['@id'] }}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/2a97dec9-394a-4d55-b949-97aabb026018"
+            },
+            "status": null,
+            "top": "1280",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "7ccb34f5-ba8f-4b35-b986-9400ec1bebeb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Invalid Asset Rank Input",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Invalid AssetGroupID",
+                        "description": "##### The Specified Rank is invalid: {{vars.steps.Ask_for_Asset_Rank.input.rankNumber}}\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Rank<\/th>\n      <th style=\"text-align: center;\">Asset count<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.rank_stats %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.rank}}<\/td>\n      <td style=\"text-align: center;\">{{record.count}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Exit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "940",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "093591ed-a610-49e6-9a59-7a874c1e8a5d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Invalid Firmware Input",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Invalid AssetGroupID",
+                        "description": "##### The Specified Firmware is invalid: {{vars.steps.Ask_for_Firmware.input.iRI}}\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Firmware ID<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.steps.Find_Firmware %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.id}}<\/td>\n      <td style=\"text-align: center;\">{{record.name}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Exit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "1100",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "3eb7c591-dd3a-41d2-8076-675fb1a658dd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Invalid Input",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Invalid AssetGroupID",
+                        "description": "##### The Specified AssetGroupID is invalid: {{vars.steps.Ask_for_AssetGroup.input.assetGroupID}}\n<br>\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">AssetGroupID<\/th>\n      <th style=\"text-align: center;\">Nb of Assets<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.groupid_stats %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.assetGroupID}}<\/td>\n      <td style=\"text-align: center;\">{{record.count}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>\n",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Exit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "780",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "e01cc1ad-54e3-4e7c-abaf-ec55f67259a7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Moxa Upgrade",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.Moxa_assetsUUID}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "AssetUID": "{{vars.item}}",
+                    "AttachmentIRI": "{{ (vars.steps.Find_Firmware | selectattr('id', 'equalto', vars.steps.Ask_for_Firmware.input.iRI|int) | list | first)['@id'] }}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/6431b530-2e97-4092-9cf7-1ccc6401aac2"
+            },
+            "status": null,
+            "top": "1200",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "4e5b9fbc-8d1e-44db-8165-9177060ce654"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Extract found",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "No Asset eligible for upgrade",
+                        "description": "###### Only Assets with a Status of \"To Be Upgraded\" can be upgraded. \n<br>Please update your Assets and restart the procedure.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "asset_upgrade_managements",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false,
+                    "emailRecipients": ""
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "customEmailExternal": false,
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
+            },
+            "status": null,
+            "top": "560",
+            "left": "1020",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "cc016cbd-d171-48bd-b8b6-83140feed048"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "noop",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.7.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "900",
+            "left": "1020",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "56209ad0-ca39-42e0-b3dd-e36392ca7666"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Other Upgrade",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.unknown_assetsUUID}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "AssetUID": "{{vars.item}}",
+                    "AttachmentIRI": "{{ (vars.steps.Find_Firmware | selectattr('id', 'equalto', vars.steps.Ask_for_Firmware.input.iRI|int) | list | first)['@id'] }}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/d9d629e7-2578-4bee-9a97-b755e6762d7c"
+            },
+            "status": null,
+            "top": "1440",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "b23ed0ac-f7fa-43b5-9caa-12143fa695ca"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "2887625f-a366-418c-8815-e880ab23aea4",
+                "resources": [
+                    "asset_upgrade_managements"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "40",
+            "left": "820",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "92c799b8-a528-4a93-ac7b-54a8a466403f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Stats",
+            "description": null,
+            "arguments": {
+                "groupid_list": "{{vars.steps.Extract_Asset|yaql('$.groupBy($.assetGroupID).select($[0])')}}",
+                "groupid_stats": "{{vars.steps.Extract_Asset|yaql('$.groupBy($.assetGroupID).select(dict(\"assetGroupID\"=> $[0], \"count\"=> $[1].count()))')}}",
+                "firmwareid_list": "{{vars.steps.Find_Firmware|yaql(\"$.id\")}}"
+            },
+            "status": null,
+            "top": "560",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "45a922a7-1c67-445c-ad2a-807795e7eb8c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Stats Rank",
+            "description": null,
+            "arguments": {
+                "rank_list": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ').groupBy($.rank).select($[0])')}}",
+                "rank_stats": "{{ vars.steps.Extract_Asset | yaql('$.where($.assetGroupID = ' ~ vars.steps.Ask_for_AssetGroup.input.assetGroupID ~ ').groupBy($.rank).select(dict(\"rank\"=> $[0], \"count\"=> $[1].count()))') }}"
+            },
+            "status": null,
+            "top": "840",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "8ef7f442-1cff-47cb-a143-5d313732dbf3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Verify AssetGroup input",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Ok",
+                        "step_iri": "\/api\/3\/workflow_steps\/8ef7f442-1cff-47cb-a143-5d313732dbf3",
+                        "condition": "{{ vars.steps.Ask_for_AssetGroup.input.assetGroupID in vars.groupid_list }}",
+                        "step_name": "Stats Rank"
+                    },
+                    {
+                        "option": "Invalid input",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/e01cc1ad-54e3-4e7c-abaf-ec55f67259a7",
+                        "step_name": "Invalid Input"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "740",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "0e0cf1a4-aee2-47c4-9cd2-d322845d1795"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Verify Asset Rank",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Ok",
+                        "step_iri": "\/api\/3\/workflow_steps\/a2c19aba-7f96-4c20-8c5a-61d4c6a3fbf4",
+                        "condition": "{{ vars.steps.Ask_for_Asset_Rank.input.rankNumber in vars.rank_list }}",
+                        "step_name": "Ask for firmware"
+                    },
+                    {
+                        "option": "Invalid input",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/093591ed-a610-49e6-9a59-7a874c1e8a5d",
+                        "step_name": "Invalid Asset Rank Input"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "940",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "238515b5-f086-4396-92ef-401330e4a4e5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Verify extract",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Record found",
+                        "step_iri": "\/api\/3\/workflow_steps\/45a922a7-1c67-445c-ad2a-807795e7eb8c",
+                        "condition": "{{ (vars.steps.Extract_Asset|length) >0 }}",
+                        "step_name": "Stats"
+                    },
+                    {
+                        "option": "No Record",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/cc016cbd-d171-48bd-b8b6-83140feed048",
+                        "step_name": "No Extract found"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "440",
+            "left": "820",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "f00d355e-f1e0-4245-beb8-c2ef8ea3d922"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Verify Firmware input",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Ok",
+                        "step_iri": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+                        "condition": "{{ vars.steps.Ask_for_AssetGroup.input.assetGroupID in vars.groupid_list }}",
+                        "step_name": "Extract Assets UUID"
+                    },
+                    {
+                        "option": "Invalid input",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/3eb7c591-dd3a-41d2-8076-675fb1a658dd",
+                        "step_name": "Invalid Firmware Input"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1060",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "6cf3e5eb-6bfe-4d26-bf2e-43f06251cb74"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for Asset -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/51054063-111c-4e61-8c9c-6a25c7560acb",
+            "label": "Cancel",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6d1023de-db1f-46bf-a467-7c27e673614a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for Asset -> Verify input",
+            "targetStep": "\/api\/3\/workflow_steps\/0e0cf1a4-aee2-47c4-9cd2-d322845d1795",
+            "sourceStep": "\/api\/3\/workflow_steps\/51054063-111c-4e61-8c9c-6a25c7560acb",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "23b7e532-52dd-4fb1-81bd-b3f0353ae496"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/a2c19aba-7f96-4c20-8c5a-61d4c6a3fbf4",
+            "label": "Cancel",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2e33c825-b1c4-4d99-a502-ca29a0d098db"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/66591ca7-9f5b-4847-8fe6-8e7c5cdf2e85",
+            "label": "Cancel",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "03c55c11-9b6f-49ba-88be-c61a5c308b4e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> Verify Firmware input",
+            "targetStep": "\/api\/3\/workflow_steps\/238515b5-f086-4396-92ef-401330e4a4e5",
+            "sourceStep": "\/api\/3\/workflow_steps\/66591ca7-9f5b-4847-8fe6-8e7c5cdf2e85",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ddb83ac7-9797-4fb9-9c28-4f61866b61a4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> Verify Firmware input",
+            "targetStep": "\/api\/3\/workflow_steps\/6cf3e5eb-6bfe-4d26-bf2e-43f06251cb74",
+            "sourceStep": "\/api\/3\/workflow_steps\/a2c19aba-7f96-4c20-8c5a-61d4c6a3fbf4",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ece87580-34c2-46f4-bfc7-7ed668002f1b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Find Firmware",
+            "targetStep": "\/api\/3\/workflow_steps\/fb4e6b5a-f53f-44ae-9cb1-13d7097d097b",
+            "sourceStep": "\/api\/3\/workflow_steps\/8b749598-276f-432d-9a9e-416a80e81ad1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2b507363-fc08-4550-b980-ab361ec72d6b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy of Invalid Input -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/093591ed-a610-49e6-9a59-7a874c1e8a5d",
+            "label": "Exit",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "cc7c74e3-4c96-410e-a6a1-85cfb8b7451b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Assets UUID -> Cisco Upgrade",
+            "targetStep": "\/api\/3\/workflow_steps\/7ae78970-8a71-4a06-9eee-95dde3d9d497",
+            "sourceStep": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b8460ce4-c31c-498c-80fb-3103a8243115"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Assets UUID -> Copy of Cisco Upgrade",
+            "targetStep": "\/api\/3\/workflow_steps\/b23ed0ac-f7fa-43b5-9caa-12143fa695ca",
+            "sourceStep": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9f141e08-2d79-4cf4-bbc1-ddbb1e1c7530"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Assets UUID -> Fortinet Upgrade",
+            "targetStep": "\/api\/3\/workflow_steps\/7ccb34f5-ba8f-4b35-b986-9400ec1bebeb",
+            "sourceStep": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b9f3030b-448c-4983-aac7-619462d844b3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Assets UUID -> Upgrade",
+            "targetStep": "\/api\/3\/workflow_steps\/4e5b9fbc-8d1e-44db-8165-9177060ce654",
+            "sourceStep": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "51679c46-5b1b-4707-a7b7-f42538f11f44"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Asset -> Verify extract",
+            "targetStep": "\/api\/3\/workflow_steps\/f00d355e-f1e0-4245-beb8-c2ef8ea3d922",
+            "sourceStep": "\/api\/3\/workflow_steps\/40a6de5a-a5e4-4736-a8b8-a9c5356882cc",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "e0d1c762-aa27-40fb-8293-4a9dada31d88"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Firmware -> Extract Asset",
+            "targetStep": "\/api\/3\/workflow_steps\/40a6de5a-a5e4-4736-a8b8-a9c5356882cc",
+            "sourceStep": "\/api\/3\/workflow_steps\/fb4e6b5a-f53f-44ae-9cb1-13d7097d097b",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "862a5429-eaaa-45d8-a2fd-d9fb3911229f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Invalid Firmware Input -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/3eb7c591-dd3a-41d2-8076-675fb1a658dd",
+            "label": "Exit",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "06df65e0-2326-4784-8805-e62035faee4d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Invalid Input -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/e01cc1ad-54e3-4e7c-abaf-ec55f67259a7",
+            "label": "Exit",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "779c4567-0dfe-40fc-95a6-36510526fb6e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "No Extract found -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/56209ad0-ca39-42e0-b3dd-e36392ca7666",
+            "sourceStep": "\/api\/3\/workflow_steps\/cc016cbd-d171-48bd-b8b6-83140feed048",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9ba06e33-1adb-43f7-bfae-98758221a2eb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/8b749598-276f-432d-9a9e-416a80e81ad1",
+            "sourceStep": "\/api\/3\/workflow_steps\/92c799b8-a528-4a93-ac7b-54a8a466403f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "195a63dc-5fe1-4679-b899-e69dd5d6d074"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Stats -> Ask for AssetGroup",
+            "targetStep": "\/api\/3\/workflow_steps\/51054063-111c-4e61-8c9c-6a25c7560acb",
+            "sourceStep": "\/api\/3\/workflow_steps\/45a922a7-1c67-445c-ad2a-807795e7eb8c",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "20c7054c-bc5c-4f1c-8aa2-2f227fb9c369"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Stats Rank -> Ask for firmware",
+            "targetStep": "\/api\/3\/workflow_steps\/66591ca7-9f5b-4847-8fe6-8e7c5cdf2e85",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ef7f442-1cff-47cb-a143-5d313732dbf3",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d7435d07-f2ff-4fe8-b8a6-71451f965177"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify AssetGroup input -> Copy of Ask for AssetGroup",
+            "targetStep": "\/api\/3\/workflow_steps\/e01cc1ad-54e3-4e7c-abaf-ec55f67259a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/0e0cf1a4-aee2-47c4-9cd2-d322845d1795",
+            "label": "Invalid input",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c4abce48-18c9-4b82-b805-44540586985d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify AssetGroup input -> Stats Rank",
+            "targetStep": "\/api\/3\/workflow_steps\/8ef7f442-1cff-47cb-a143-5d313732dbf3",
+            "sourceStep": "\/api\/3\/workflow_steps\/0e0cf1a4-aee2-47c4-9cd2-d322845d1795",
+            "label": "Ok",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d648ba81-232d-4d29-a55e-ea309fb48499"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify Asset Rank -> Ask for firmware",
+            "targetStep": "\/api\/3\/workflow_steps\/a2c19aba-7f96-4c20-8c5a-61d4c6a3fbf4",
+            "sourceStep": "\/api\/3\/workflow_steps\/238515b5-f086-4396-92ef-401330e4a4e5",
+            "label": "Ok",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "7003a377-4ac9-464d-a128-11ad99004e84"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify extract -> No Extract found",
+            "targetStep": "\/api\/3\/workflow_steps\/cc016cbd-d171-48bd-b8b6-83140feed048",
+            "sourceStep": "\/api\/3\/workflow_steps\/f00d355e-f1e0-4245-beb8-c2ef8ea3d922",
+            "label": "No Record",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "28cc4f45-57c7-4f96-a3a5-1a6ea02667e3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify extract -> Stats",
+            "targetStep": "\/api\/3\/workflow_steps\/45a922a7-1c67-445c-ad2a-807795e7eb8c",
+            "sourceStep": "\/api\/3\/workflow_steps\/f00d355e-f1e0-4245-beb8-c2ef8ea3d922",
+            "label": "Record found",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "1a5725e7-6abc-48d4-a40e-1d5f68cc4d94"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify Firmware input -> Copy of Invalid Firmware Input",
+            "targetStep": "\/api\/3\/workflow_steps\/3eb7c591-dd3a-41d2-8076-675fb1a658dd",
+            "sourceStep": "\/api\/3\/workflow_steps\/6cf3e5eb-6bfe-4d26-bf2e-43f06251cb74",
+            "label": "Invalid input",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "934519f7-c2c6-40ff-a6aa-303eb290e1dc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify Firmware input -> Copy of Invalid Input",
+            "targetStep": "\/api\/3\/workflow_steps\/093591ed-a610-49e6-9a59-7a874c1e8a5d",
+            "sourceStep": "\/api\/3\/workflow_steps\/238515b5-f086-4396-92ef-401330e4a4e5",
+            "label": "Invalid input",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "f2e2ba38-3801-427c-bb67-48cd45e3b2f4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify Firmware input -> Extract Assets UUID",
+            "targetStep": "\/api\/3\/workflow_steps\/baddb2cd-75d6-47d1-a014-2bea248a95d1",
+            "sourceStep": "\/api\/3\/workflow_steps\/6cf3e5eb-6bfe-4d26-bf2e-43f06251cb74",
+            "label": "Ok",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "3c412d33-48e3-4a72-8a14-09a075aea0c8"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "playbookOrigin": "\/api\/3\/picklists\/b6d710a9-a8ec-41ec-8817-fe9fa062fcdd",
+    "isEditable": false,
+    "uuid": "227040fc-ce8b-4040-a7f8-6733d01d84ea",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}

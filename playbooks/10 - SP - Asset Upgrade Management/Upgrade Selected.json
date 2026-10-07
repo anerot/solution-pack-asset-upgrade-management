@@ -1,0 +1,405 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Upgrade Selected",
+    "aliasName": null,
+    "tag": null,
+    "description": "Start the Upgrade process for a pre-selected list of assets",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/cdcaf650-0260-44cd-8d2c-06788c9f43d1",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7a229585-dad3-44d3-891b-978f621287ae",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Ask for Firmware",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Specify the Firmware to use",
+                        "description": "Please specify the Firmware to use:\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Firmware ID<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.steps.Find_Firmware %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.id}}<\/td>\n      <td style=\"text-align: center;\">{{record.name}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>\n\nYou are to simultaneously Upgrade the SELECTED Assets.\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">IP<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n      <th style=\"text-align: center;\">Vendor<\/th>\n      <th style=\"text-align: center;\">Config<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.input.records %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.iPAddress}}<\/td>\n      <td style=\"text-align: center;\">{{record.displayName}}<\/td>\n      <td style=\"text-align: center;\">{{record.vendor.itemValue}}\n      <td style=\"text-align: center;\">{{record.assetConfigName}}\n      <\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>",
+                        "inputVariables": [
+                            {
+                                "name": "iRI",
+                                "type": "integer",
+                                "label": "Firmware ID",
+                                "title": "Integer Field",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "integer",
+                                "formType": "integer",
+                                "required": false,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": [],
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/integer.html",
+                                "_nameTouched": true,
+                                "defaultValue": null,
+                                "_previousName": "iRI",
+                                "playbookField": true,
+                                "requiredQuery": [],
+                                "displayTemplate": "%7B%7B%20name%20%7D%7D",
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": []
+                                },
+                                "lengthConstraint": true,
+                                "responseSelected": [
+                                    {
+                                        "option": "OK",
+                                        "step_iri": "\/api\/3\/workflow_steps\/f92d232c-e9ea-49c2-88c2-d39110dc8c42"
+                                    }
+                                ],
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "requiredCondition": "mapping",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addRequiredConditions": true,
+                                "_addVisibilityConditions": true
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "OK",
+                            "step_iri": "\/api\/3\/workflow_steps\/f92d232c-e9ea-49c2-88c2-d39110dc8c42"
+                        },
+                        {
+                            "option": "Cancel",
+                            "step_iri": "\/api\/3\/workflow_steps\/22857fd0-bc39-4ccf-be31-4d0d36792e1d"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "300",
+            "left": "400",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "52a7ec1b-faea-417a-8cac-8e8188d4bc88"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check FirmwareID input",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "OK",
+                        "step_iri": "\/api\/3\/workflow_steps\/7bbb31cc-a9e8-4962-8d4e-84d832cfceca",
+                        "condition": "{{ vars.steps.Ask_for_Firmware.input.iRI in vars.firmwareID_list }}",
+                        "step_name": "Upgrade"
+                    },
+                    {
+                        "option": "Exit",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/e61548e6-f1bc-48fb-9dff-f02953d824a9",
+                        "step_name": "Invalid Input"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "440",
+            "left": "400",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "f92d232c-e9ea-49c2-88c2-d39110dc8c42"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Firmware",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "type",
+                            "value": "\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/6b6ab015-e652-46ef-90c7-79327c5674de",
+                                "display": "Firmware",
+                                "itemValue": "Firmware"
+                            },
+                            "operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "name",
+                        "description",
+                        "type",
+                        "id"
+                    ]
+                },
+                "module": "attachments?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "firmwareID_list": "{{vars.steps.Find_Firmware|yaql('$.groupBy($.id).select($[0])')}}"
+                }
+            },
+            "status": null,
+            "top": "160",
+            "left": "400",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "2101570b-1c02-4b7f-8353-7be5c532cf57"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Invalid Input",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Invalid FirmwareID",
+                        "description": "##### The Specified FirmwareID is invalid: {{vars.steps.Ask_for_Firmware.input.iRI}}\n<table>\n  <thead>\n    <tr>\n      <th style=\"text-align: center;\">Firmware ID<\/th>\n      <th style=\"text-align: center;\">Name<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n {% for record in vars.steps.Find_Firmware %}\n  <tr>\n      <td style=\"text-align: center;\">{{record.id}}<\/td>\n      <td style=\"text-align: center;\">{{record.name}}<\/td>\n    <\/tr>\n{% endfor %}\n  <\/tbody>\n<\/table>\n<br>",
+                        "inputVariables": []
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "asset_upgrade_managements",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false,
+                    "emailRecipients": ""
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Exit",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/22857fd0-bc39-4ccf-be31-4d0d36792e1d"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "customEmailExternal": false,
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
+            },
+            "status": null,
+            "top": "440",
+            "left": "800",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "e61548e6-f1bc-48fb-9dff-f02953d824a9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "noop",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.7.2",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "800",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "22857fd0-bc39-4ccf-be31-4d0d36792e1d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "f9590505-c681-492d-94d4-16251c56cc56",
+                "resources": [
+                    "asset_upgrade_managements"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "triggerOnSource": true,
+                "displayConditions": {
+                    "asset_upgrade_managements": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "20",
+            "left": "400",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "7a229585-dad3-44d3-891b-978f621287ae"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Upgrade",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.input.records}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "AssetUID": "{{vars.item.uuid}}",
+                    "AttachmentIRI": "{{ (vars.steps.Find_Firmware | selectattr('id', 'equalto', vars.steps.Ask_for_Firmware.input.iRI|int) | list | first)['@id'] }}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/6431b530-2e97-4092-9cf7-1ccc6401aac2"
+            },
+            "status": null,
+            "top": "580",
+            "left": "400",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "7bbb31cc-a9e8-4962-8d4e-84d832cfceca"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> Attachment Creation",
+            "targetStep": "\/api\/3\/workflow_steps\/f92d232c-e9ea-49c2-88c2-d39110dc8c42",
+            "sourceStep": "\/api\/3\/workflow_steps\/52a7ec1b-faea-417a-8cac-8e8188d4bc88",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "5b6fc07b-a23f-4d38-929f-ee8dc8f50228"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Ask for firmware -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/22857fd0-bc39-4ccf-be31-4d0d36792e1d",
+            "sourceStep": "\/api\/3\/workflow_steps\/52a7ec1b-faea-417a-8cac-8e8188d4bc88",
+            "label": "Cancel",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2eca42f4-151c-4de7-8e44-5d0b8cdfc1fe"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Attachment Creation -> Upgrade",
+            "targetStep": "\/api\/3\/workflow_steps\/7bbb31cc-a9e8-4962-8d4e-84d832cfceca",
+            "sourceStep": "\/api\/3\/workflow_steps\/f92d232c-e9ea-49c2-88c2-d39110dc8c42",
+            "label": "OK",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "00e16c07-b762-48e5-987c-1f5e0c2d96dc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Firmware -> Ask for firmware",
+            "targetStep": "\/api\/3\/workflow_steps\/52a7ec1b-faea-417a-8cac-8e8188d4bc88",
+            "sourceStep": "\/api\/3\/workflow_steps\/2101570b-1c02-4b7f-8353-7be5c532cf57",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ef9273a1-115b-4fff-ab7f-92e5d36a3350"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Invalid Input -> noop",
+            "targetStep": "\/api\/3\/workflow_steps\/22857fd0-bc39-4ccf-be31-4d0d36792e1d",
+            "sourceStep": "\/api\/3\/workflow_steps\/e61548e6-f1bc-48fb-9dff-f02953d824a9",
+            "label": "Exit",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "cbafa2ab-34d8-4b49-9d64-3f0470027b9f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Find Firmware",
+            "targetStep": "\/api\/3\/workflow_steps\/2101570b-1c02-4b7f-8353-7be5c532cf57",
+            "sourceStep": "\/api\/3\/workflow_steps\/7a229585-dad3-44d3-891b-978f621287ae",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "1e39e4ee-e925-4d56-82ae-bc19aa0362bc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify FirmwareID input -> Invalid Input",
+            "targetStep": "\/api\/3\/workflow_steps\/e61548e6-f1bc-48fb-9dff-f02953d824a9",
+            "sourceStep": "\/api\/3\/workflow_steps\/f92d232c-e9ea-49c2-88c2-d39110dc8c42",
+            "label": "Exit",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8b6e7bda-7433-4092-9e03-ef01f87528b1"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "playbookOrigin": "\/api\/3\/picklists\/b6d710a9-a8ec-41ec-8817-fe9fa062fcdd",
+    "isEditable": false,
+    "uuid": "d20beeee-0e53-431e-b34b-9305978960ae",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": []
+}
