@@ -1,0 +1,21 @@
+{
+    "ASSET_UPGRADE_MANAGEMENTS": {
+        "MODULE_DETAILS": {
+            "SINGULAR_NAME": "Asset Upgrade Management",
+            "PLURAL_NAME": "Asset Upgrade Managements"
+        },
+        "FIELDS": {
+            "RANK": "Rank",
+            "ASSETGROUPID": "Asset Group ID",
+            "DISPLAYNAME": "Display Name",
+            "VENDOR": "Vendor",
+            "ASSETCONFIGNAME": "Asset Config Name",
+            "IPADDRESS": "IP Address",
+            "HOSTNAME": "Hostname",
+            "UPGRADESTATUS": "Upgrade Status",
+            "ATTACHMENTS": "Attachments",
+            "ASSETCATEGORY": "Asset Category",
+            "COMMENTS": "Comments"
+        }
+    }
+}
