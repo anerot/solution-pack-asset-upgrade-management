@@ -7,13 +7,14 @@
 
 # Overview
 
-The **Asset Upgrade Management** solution pack has been developped to address a customer requirement for MOXA Switches upgrade in their OT environment, by controlling the switch "cascade" upgrade path/rank/order
+The **Asset Upgrade Management** solution pack has been developped to address a customer requirement for MOXA Switches upgrade in their OT environment, by controlling the switch "cascade" upgrade path/rank/order.<br>
 Each Asset is :
-- part of a Group/Deployment
-- has a rank/order in that Group
+- part of a "Asset Group ID" = Group/Deployment
+- has a "Rank" = level/order in that Group
 - uses an "Asset Config Name" syntax corresponding PERFECTLY (cas sensitive) with a configuration name you created in your "Asset Upgrade" connector.
 
-<img width="912" height="336" alt="image" src="https://github.com/user-attachments/assets/558fffd4-cbf5-4410-a276-61936ae189de" /> <img width="644" height="778" alt="image" src="https://github.com/user-attachments/assets/0c75eaa6-e1d6-422b-9113-818ede331fb0" />
+<img width="684" height="252" alt="image" src="https://github.com/user-attachments/assets/558fffd4-cbf5-4410-a276-61936ae189de" />
+<img width="480" height="580" alt="image" src="https://github.com/user-attachments/assets/49ad8f06-1f86-468e-9afa-0d361ea8e438" />
 
 
 
