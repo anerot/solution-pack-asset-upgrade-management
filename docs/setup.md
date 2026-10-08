@@ -35,6 +35,10 @@ The **Asset Upgrade Management** solution pack depends on the following connecto
 
 
 # Usage
+## Preparing for an Upgrade
+Before starting your upgrade, verify that :
+- You have a valid Firmware uploaded in `Attachments`
+- Your Asset Upgrade Status is `To Be Upgraded` (Mandatory for the `Start Group` playbook)
 ### Add Asset
 Add your Assets in the Asset List by specifying:
 - IP Address : a valid IPv4 address or FQDN to access your Asset
@@ -55,12 +59,9 @@ In your navigation pane, go to `Attachments` page and add a new attachment.<br>
 Define a name, upload the firmware in the "File" section and select `Firmware` in the drop/down list of Attachment `Type`. <br>
 Note: The upgrade playbook will filter the available Attachment based on Attachment Type = Firmware
 
-### Preparing for an Upgrade
-Before starting your upgrade, verify that :
-- You have a valid Firmware uploaded in `Attachments`
-- Your Asset Upgrade Status is `To Be Upgraded` (Mandatory for the `Start Group` playbook)
 
-### Start an Upgrade
+
+## Start an Upgrade
 You can start your upgrade in two ways:
 - Click on the Playbook button <img width="110" height="35" alt="image" src="https://github.com/user-attachments/assets/c36995d1-7dad-49ce-aeac-78782ba9c436" /> located in your `Asset Upgrade Management/Asset List` navigation menu to start an upgrade based on Group and Rank.
 - Select one or multiple Assets in your Asset List and execute the playbook `Upgrade Selected`.
@@ -79,4 +80,16 @@ Note: The User Input provides you the Asset count() in each Rank
 - Specify the Firmware ID you want to use for the upgrade process and click OK.<br>
 Note: The User Input provides you the Asset list in your selected Asset Group and Rank
 
+Once the Upgrade finishes, the `Upgrade Status` of your Assets will change according with the Playbook execution result.<br>
+- Success: the Upgrade is a success. If you edit your Asset you will see the `Configuration Backup` attached to the `Asset`.
+- Failed: the Upgrade Failed. If you edit your Asset and open the Workspace for `Comments` you will see the failure reason.
+<img width="1786" height="717" alt="image" src="https://github.com/user-attachments/assets/e1bacc97-1ba1-4448-b7e9-3d06f105bfb3" />
+
+### Upgrade by selecting one or multiple Assets 
+#### Select the Assets in the `Asset List`, click `Execute` and select `Upgrade Selected`
+<img width="1503" height="495" alt="image" src="https://github.com/user-attachments/assets/e9e0435c-f4da-4feb-8637-251e65167fa5" /><br>
+#### Specify the Firmware to use
+<img width="859" height="630" alt="image" src="https://github.com/user-attachments/assets/fc871f05-9997-4521-8c25-fffba59975d9" /><br>
+- Specify the firmware ID you want to use for the upgrade and click OK.<br><br>
+Note: The User Input shows you the Attachment of "Firmware" type, but also all the slected switches even if they are not maked as `To Be Upgraded`. The Upgrade is executed simultaneously on BOTH selected Assets.
 
