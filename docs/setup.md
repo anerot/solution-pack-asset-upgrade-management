@@ -36,14 +36,13 @@ The **Asset Upgrade Management** solution pack depends on the following connecto
 
 # Usage
 ### Add Asset
-
 Add your Assets in the Asset List by specifying:
 - IP Address : a valid IPv4 address or FQDN to access your Asset
 - Asset Config Name: the EXACT Configuration name to use as username/password that you created your `Asset Upgrade` connector.
 - Asset Group ID: The Group/Deployment that your asset is part of. You can manage multiple switches deployment in different location or zone by specifying a different Asset Group ID
 - Rank: The position of your Asset related to the order/rank/position you want to upgrade it compared with your other Assets in the same Asset Group ID.
 - Vendor: It will determine witch upgrade scenario the "Start Group" playbook will use.
--  Upgrade Status:
+- Upgrade Status:
     - Failed - A previous Upgrade attempt Failed. See your Asset Comments for details.
     - Success - The default value.
     - To Be Upgraded - Your Asset is ready for Upgrade.
@@ -52,9 +51,32 @@ Add your Assets in the Asset List by specifying:
 - Hostname: The hostname of your Asset
 
 ### Add a Firmware
+In your navigation pane, go to `Attachments` page and add a new attachment.<br>
+Define a name, upload the firmware in the "File" section and select `Firmware` in the drop/down list of Attachment `Type`. <br>
+Note: The upgrade playbook will filter the available Attachment based on Attachment Type = Firmware
 
+### Preparing for an Upgrade
+Before starting your upgrade, verify that :
+- You have a valid Firmware uploaded in `Attachments`
+- Your Asset Upgrade Status is `To Be Upgraded` (Mandatory for the `Start Group` playbook)
 
 ### Start an Upgrade
 You can start your upgrade in two ways:
 - Click on the Playbook button <img width="110" height="35" alt="image" src="https://github.com/user-attachments/assets/c36995d1-7dad-49ce-aeac-78782ba9c436" /> located in your `Asset Upgrade Management/Asset List` navigation menu to start an upgrade based on Group and Rank.
 - Select one or multiple Assets in your Asset List and execute the playbook `Upgrade Selected`.
+
+### Upgrade with <img width="110" height="35" alt="image" src="https://github.com/user-attachments/assets/c36995d1-7dad-49ce-aeac-78782ba9c436" /> playbook
+#### Once you start the upgrade you will be prompted to specify the AssetGroup you want to upgrade
+<img width="860" height="534" alt="image" src="https://github.com/user-attachments/assets/14469025-e1d7-4866-88cc-e14811cf842f" /> <br>
+- Specify the Asset Group ID to upgrade and click OK.<br>
+Note: The User Input provides you the Asset count() in each Asset Group
+#### Select the rank to upgrade
+<img width="861" height="463" alt="image" src="https://github.com/user-attachments/assets/9bbe8085-e01f-47e1-b009-c36d50a49d53" /> <br>
+- Specify the Rank number and click OK.<br>
+Note: The User Input provides you the Asset count() in each Rank
+#### Select the Firmware
+<img width="863" height="612" alt="image" src="https://github.com/user-attachments/assets/b1036ae5-eca9-41a6-80b3-067f7b5c77ba" /> <br>
+- Specify the Firmware ID you want to use for the upgrade process and click OK.<br>
+Note: The User Input provides you the Asset list in your selected Asset Group and Rank
+
+
