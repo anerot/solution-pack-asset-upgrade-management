@@ -91,5 +91,5 @@ Once the Upgrade finishes, the `Upgrade Status` of your Assets will change accor
 #### Specify the Firmware to use
 <img width="859" height="630" alt="image" src="https://github.com/user-attachments/assets/fc871f05-9997-4521-8c25-fffba59975d9" /><br>
 - Specify the firmware ID you want to use for the upgrade and click OK.<br><br>
-Note: The User Input shows you the Attachment of "Firmware" type, but also all the slected switches even if they are not maked as `To Be Upgraded`. The Upgrade is executed simultaneously on BOTH selected Assets.
+Note: The User Input shows you Attachments of "Firmware" type, but also all the selected switches even if they are not marked as `To Be Upgraded`. The Upgrade is executed simultaneously on BOTH selected Assets.
 
