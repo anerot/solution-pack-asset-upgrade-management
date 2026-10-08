@@ -16,7 +16,7 @@ Each Asset is :
 <img width="684" height="252" alt="image" src="https://github.com/user-attachments/assets/558fffd4-cbf5-4410-a276-61936ae189de" />
 <img width="480" height="580" alt="image" src="https://github.com/user-attachments/assets/49ad8f06-1f86-468e-9afa-0d361ea8e438" />
 
-This Solution Pack currently support only the MOXA switches upgrade scenario but is by design able to support other vendors by addind extra playbooks.
+This Solution Pack currently support only the MOXA switches upgrade scenario but is by design able to support other vendors by adding extra playbooks.
 
 # Next Steps
 
