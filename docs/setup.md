@@ -34,6 +34,27 @@ The **Asset Upgrade Management** solution pack depends on the following connecto
 - The `Asset Upgrade` connector will store the username/password you will use to authenticate. If you use some different username/password for other devices then you have to create multiple `Configuration` in your connector. The Configuration name case is important and has to be the same than your Asset Config Name value.
 
 
-# Next Steps
-| [Usage](./usage.md) | [Contents](./contents.md) |
-|---------------------|---------------------------|
+# Usage
+### Add Asset
+
+Add your Assets in the Asset List by specifying:
+- IP Address : a valid IPv4 address or FQDN to access your Asset
+- Asset Config Name: the EXACT Configuration name to use as username/password that you created your `Asset Upgrade` connector.
+- Asset Group ID: The Group/Deployment that your asset is part of. You can manage multiple switches deployment in different location or zone by specifying a different Asset Group ID
+- Rank: The position of your Asset related to the order/rank/position you want to upgrade it compared with your other Assets in the same Asset Group ID.
+- Vendor: It will determine witch upgrade scenario the "Start Group" playbook will use.
+-  Upgrade Status:
+    - Failed - A previous Upgrade attempt Failed. See your Asset Comments for details.
+    - Success - The default value.
+    - To Be Upgraded - Your Asset is ready for Upgrade.
+- Asset Category: This filed is optional but could be used for future scenario.
+- Display Name: The name of your Asset
+- Hostname: The hostname of your Asset
+
+### Add a Firmware
+
+
+### Start an Upgrade
+You can start your upgrade in two ways:
+- Click on the Playbook button <img width="110" height="35" alt="image" src="https://github.com/user-attachments/assets/c36995d1-7dad-49ce-aeac-78782ba9c436" /> located in your `Asset Upgrade Management/Asset List` navigation menu to start an upgrade based on Group and Rank.
+- Select one or multiple Assets in your Asset List and execute the playbook `Upgrade Selected`.
